@@ -92,7 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: double.infinity,
               child: Card(
-                color: Colors.blue,
                 child: Chart(_recentTransactions),
                 elevation: 5, // 그림자 (고도) 설정
               ),
