@@ -9,7 +9,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: MyHomePage());
+    return MaterialApp(
+        title: 'Material App',
+        theme:
+            ThemeData(primarySwatch: Colors.purple, accentColor: Colors.amber),
+        home: MyHomePage());
   }
 }
 
@@ -59,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Personal Expenses'),
         actions: [
           IconButton(
               icon: Icon(Icons.add),
