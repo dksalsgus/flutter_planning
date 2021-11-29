@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.purple,
             accentColor: Colors.amber,
             fontFamily: 'Quicksand',
+            errorColor: Colors.red,
             textTheme: ThemeData.light()
                 .textTheme
                 .copyWith(button: TextStyle(color: Colors.white)),
@@ -60,6 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      transactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   /**
    *
    */
@@ -100,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5, // 그림자 (고도) 설정
               ),
             ),
-            TransactionList(transactions)
+            TransactionList(transactions, _deleteTransaction)
           ],
         ),
       ),
