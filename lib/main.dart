@@ -104,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               child: Card(
                 child: Chart(_recentTransactions),
-                elevation: 5, // 그림자 (고도) 설정
               ),
             ),
             TransactionList(transactions, _deleteTransaction)
