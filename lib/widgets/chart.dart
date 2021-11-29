@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_planning/models/transaction.dart';
 import 'package:flutter_planning/widgets/chart_bar.dart';
@@ -9,6 +7,7 @@ class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
   Chart(this.recentTransactions);
+
   /**
    * getter
    */
@@ -27,7 +26,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum.toStringAsFixed(2)
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
