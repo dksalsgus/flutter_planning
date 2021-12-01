@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_planning/widgets/chart.dart';
 import 'package:flutter_planning/widgets/new_transaction.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
                 .textTheme
                 .copyWith(button: TextStyle(color: Colors.white)),
             appBarTheme:
-                AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith())),
+            AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith())),
         home: MyHomePage());
   }
 }
@@ -55,8 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(
-      String txTitle, double txAmount, DateTime chosenDate) {
+  void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
         title: txTitle,
         amount: txAmount,
@@ -106,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     final txListWidget = Container(
         height: (mediaQuery.size.height -
-                appBar.preferredSize.height -
-                mediaQuery.padding.top) *
+            appBar.preferredSize.height -
+            mediaQuery.padding.top) *
             0.7,
         child: TransactionList(transactions, _deleteTransaction));
     return Scaffold(
@@ -122,7 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Show Chart'),
-                  Switch(
+                  Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
                       value: _showChart,
                       onChanged: (val) {
                         setState(() {
@@ -134,8 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
             if (!isLandscape)
               Container(
                 height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
+                    appBar.preferredSize.height -
+                    mediaQuery.padding.top) *
                     0.3, // 미디어 쿼리로 전체 높이와 appbar 높이 상태바 높이로 계산
                 child: Chart(_recentTransactions),
               ),
@@ -143,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (isLandscape)
               _showChart
                   ? Container(
-                height: (mediaQuery.size.height -
+                      height: (mediaQuery.size.height -
                               appBar.preferredSize.height -
                               mediaQuery.padding.top) *
                           0.7, // 미디어 쿼리로 전체 높이와 appbar 높이 상태바 높이로 계산
@@ -153,10 +155,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startAddNewTransaction(context),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => _startAddNewTransaction(context),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
