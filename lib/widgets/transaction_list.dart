@@ -14,8 +14,8 @@ class TransactionList extends StatelessWidget {
         ? LayoutBuilder(builder: (ctx, constraints) {
             return Column(
               children: [
-                Text('Nothing'),
-                SizedBox(
+                const Text('Nothing'),
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -33,7 +33,7 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               return Card(
                 elevation: 5,
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 child: ListTile(
                   title: Text(
                     transactions[index].title,
@@ -51,16 +51,16 @@ class TransactionList extends StatelessWidget {
                   trailing: MediaQuery.of(context).size.width > 460
                       ? FlatButton.icon(
                           onPressed: () => deleteTx(transactions[index].id),
-                          icon: Icon(Icons.delete),
-                          label: Text('Delete'),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
                           color: Theme.of(context).errorColor,
                         )
                       : IconButton(
                           onPressed: () => deleteTx(transactions[index].id),
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
-                            color: Theme.of(context).errorColor,
                           ),
+                          color: Theme.of(context).errorColor,
                         ),
                 ),
               );

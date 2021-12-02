@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             errorColor: Colors.red,
             textTheme: ThemeData.light()
                 .textTheme
-                .copyWith(button: TextStyle(color: Colors.white)),
+                .copyWith(button: const TextStyle(color: Colors.white)),
             appBarTheme:
                 AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith())),
         home: MyHomePage());
@@ -77,9 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  /**
-   *
-   */
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -98,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final PreferredSizeWidget appBar = (Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text(
+            middle: const Text(
               'Personal Expenses',
               style: TextStyle(fontFamily: 'Open Sans'),
             ),
@@ -107,19 +104,19 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 GestureDetector(
                   onTap: () => _startAddNewTransaction(context),
-                  child: Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add),
                 )
               ],
             ),
           )
         : AppBar(
-            title: Text(
+            title: const Text(
               'Personal Expenses',
               style: TextStyle(fontFamily: 'Open Sans'),
             ),
             actions: [
               IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: () => _startAddNewTransaction(context))
             ],
           )) as PreferredSizeWidget;
@@ -185,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                     onPressed: () => _startAddNewTransaction(context),
                   ),
             floatingActionButtonLocation:
