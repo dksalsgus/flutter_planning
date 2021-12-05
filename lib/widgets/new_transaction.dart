@@ -6,10 +6,15 @@ import 'package:intl/intl.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
-  const NewTransaction(this.addTx);
+  NewTransaction(this.addTx) {
+    print('NewTransaction 생성자');
+  }
 
   @override
-  State<NewTransaction> createState() => _NewTransactionState();
+  State<NewTransaction> createState() {
+    print('NewTransaction createState');
+    return _NewTransactionState();
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -66,7 +71,7 @@ class _NewTransactionState extends State<NewTransaction> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const CupertinoTextField(),
+              // const CupertinoTextField(),
               TextField(
                 decoration: const InputDecoration(labelText: 'Title'),
                 controller: _titleController,
