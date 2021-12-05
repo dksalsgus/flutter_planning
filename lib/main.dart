@@ -131,38 +131,45 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+  PreferredSizeWidget _buildMetarialAppBar() {
+    return AppBar(
+      title: const Text(
+        'Personal Expenses',
+        style: TextStyle(fontFamily: 'Open Sans'),
+      ),
+      actions: [
+        IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => _startAddNewTransaction(context))
+      ],
+    );
+  }
+
+  PreferredSizeWidget _buildCupertinoAppBar() {
+    return CupertinoNavigationBar(
+      middle: const Text(
+        'Personal Expenses',
+        style: TextStyle(fontFamily: 'Open Sans'),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: () => _startAddNewTransaction(context),
+            child: const Icon(CupertinoIcons.add),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final PreferredSizeWidget appBar = (Platform.isIOS
-        ? CupertinoNavigationBar(
-            middle: const Text(
-              'Personal Expenses',
-              style: TextStyle(fontFamily: 'Open Sans'),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  onTap: () => _startAddNewTransaction(context),
-                  child: const Icon(CupertinoIcons.add),
-                )
-              ],
-            ),
-          )
-        : AppBar(
-            title: const Text(
-              'Personal Expenses',
-              style: TextStyle(fontFamily: 'Open Sans'),
-            ),
-            actions: [
-              IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () => _startAddNewTransaction(context))
-            ],
-          )) as PreferredSizeWidget;
+    final PreferredSizeWidget appBar =
+        (Platform.isIOS ? _buildCupertinoAppBar() : _buildMetarialAppBar());
 
     final txListWidget = Container(
         height: (mediaQuery.size.height -
